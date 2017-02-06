@@ -1,0 +1,59 @@
+= React.js and Spring Data REST using Gradle
+
+This is a quasi-fork of the 'basic' branch GitHub repo for the React.js and Spring Data REST tutorial leveraging
+gradle instead of Maven. Basically I wanted to leverage the tutorial along with Webpack via a gradle-based build.
+
+
+* https://spring.io/guides/tutorials/react-and-spring-data-rest/[React.js and Spring Data REST] is the source tutorial for this code.
+* https://github.com/spring-guides/tut-react-and-spring-data-rest/tree/master/basic[tut-react-and-spring-data-rest] - The branch from original repo from which this code has been based/forked from
+
+You run the example the same when you'd run any gradle application that uses Spring Boot:
+
+----
+./gradlew build bootRun
+----
+
+*Testing your build*
+With the app running you can make sure your RESTful endpoint is up and running using cURL or
+any other tool you'd like.
+
+----
+$ curl localhost:8080/api
+{
+  "_links" : {
+    "employees" : {
+      "href" : "http://localhost:8080/api/employees"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/api/profile"
+    }
+  }
+}
+----
+
+And like in the original tutorial you can add records to your data with the API provided by Spring data REST
+
+----
+$ curl -X POST localhost:8080/api/employees -d "{\"firstName\": \"Aragorn II\", \"lastName\": \"son of Arathorn\", \"description\": \"King Elessar Telcontar\"}" -H "Content-Type:application/json"
+
+{
+  "firstName" : "Aragorn II",
+  "lastName" : "son of Arathorn",
+  "description" : "King Elessar Telcontar",
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/api/employees/4"
+    },
+    "employee" : {
+      "href" : "http://localhost:8080/api/employees/4"
+    }
+  }
+}
+----
+
+If you want to clean everything out and reset the build back to when you first cloned the repo just use:
+
+----
+./gradlew cleanAll
+----
+

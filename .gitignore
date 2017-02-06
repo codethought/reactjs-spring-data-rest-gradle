@@ -1,5 +1,6 @@
 .gradle
 /build/
+src/main/resources/static/built
 !gradle/wrapper/gradle-wrapper.jar
 node_modules
 
